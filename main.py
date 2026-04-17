@@ -44,7 +44,7 @@ def main():
 ║              THE LOBBYING SUBSIDY TRACKER                          ║
 ║                                                                    ║
 ║  Correlating PAC Donations with Legislative Decisions              ║
-║  2022 Election Cycle — 117th Congress                              ║
+║  2024 Election Cycle — 119th Congress                              ║
 ╚══════════════════════════════════════════════════════════════════════╝
     """
     print(banner)
@@ -73,8 +73,17 @@ def main():
         from fetch_congress import fetch_all_legislation
         legislation = fetch_all_legislation()
         print(f"\n  Legislation records: {len(legislation)}")
+    # ── Step 2.5: Fetch Roll-Call Votes ─────────────────────────────────────
+    if not args.skip_fetch and not args.analyze_only:
+        sep = '═' * 60
+        print(f"\n{sep}")
+        print("  STEP 2.5: Fetching Roll-Call Vote Records")
+        print(f"{sep}\n")
+        from fetch_votes import fetch_all_votes
+        votes = fetch_all_votes()
+        print(f"\n  Vote records: {len(votes)}")
     else:
-        print("⏩ Skipping Congress fetch (using cached data)")
+        print("⏩ Skipping vote fetch (using cached data)")
 
     if args.fetch_only:
         elapsed = time.time() - start_time
@@ -105,6 +114,13 @@ def main():
     print(f"{sep}\n")
     from visualize import generate_all_charts
     generate_all_charts()
+
+    sep = '═' * 60
+    print(f"\n{sep}")
+    print("  STEP 5b: Generating Network Graphs")
+    print(f"{sep}\n")
+    from visualize_network import generate_all_networks
+    generate_all_networks()
 
     # ── Done ──────────────────────────────────────────────────────────────
     elapsed = time.time() - start_time

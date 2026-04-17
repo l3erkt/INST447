@@ -1,0 +1,166 @@
+---
+title: "The Lobbying Subsidy Tracker: How PAC Funding Shapes Legislative Behavior on Energy, Defense, and Technology Policy"
+author:
+  - name: Joseph Pierce
+    affiliation: University of Maryland
+  - name: Robert Tzou
+    affiliation: University of Maryland
+  - name: Kevin Shepherd
+    affiliation: University of Maryland
+  - name: Bereket Zeggai
+    affiliation: University of Maryland
+date: today
+format:
+  html:
+    theme: darkly
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+    fig-width: 12
+    fig-height: 7
+bibliography: references.bib
+---
+
+## Abstract
+
+This study examines whether campaign contributions from industry Political Action Committees (PACs) correlate with legislative decision-making among 15 freshman members of the 119th United States Congress (2025–2026) elected in November 2024. Using data from the Federal Election Commission (FEC) and the Congress.gov API, we analyze PAC donations across three policy domains — fossil fuels/green energy, defense/Iran policy, and data centers/technology — and compare them against roll-call voting behavior and legislative sponsorship patterns. Preliminary results suggest [*to be completed after pipeline runs*].
+
+---
+
+## Introduction
+
+Political campaign finance plays a central role in American democratic processes, raising fundamental questions about whether financial contributions shape legislative behavior. This project investigates the following research question:
+
+> **"How does funding bias politicians in their decisions for important policies regarding fossil fuels / green energy, defense / Iran war, and data centers / technologies?"**
+
+Prior research, including @Goel2023, has found associations between donor activity and legislators' attention to related political issues, though the causal direction remains debated. Our study builds upon this foundation by applying a focused, industry-level analysis to a specific cohort of newly elected legislators in the 119th Congress, enabling a cleaner test of whether PAC funding patterns predict early legislative behavior.
+
+---
+
+## Related Work
+
+@Goel2023 demonstrated through computational analysis of congressional communications that legislators receiving higher levels of donor activity from a particular sector produced more public communications aligned with that sector's interests. While this suggests a relationship between funding and attention, the authors note that attention does not necessarily imply causation — legislators may self-select donors who already share their policy views.
+
+Our contribution differs in three key ways:
+
+1. We focus specifically on **voting behavior** (roll-call records) rather than communications
+2. We use **industry-level PAC data** linked to specific legislative committees
+3. We restrict the cohort to **freshmen legislators** to minimize confounding from long-serving members with entrenched donor networks
+
+---
+
+## Data & Methodology
+
+### Data Pipeline
+
+This project follows a Track B data science pipeline:
+
+1. **Data Ingestion** — FEC API (PAC donations, Schedule A) and Congress.gov API (bill sponsorship, roll-call votes)
+2. **Data Wrangling** — Merge on `(bioguide_id, industry)` producing one row per legislator-industry pair
+3. **Data Analysis** — Pearson/Spearman correlations, point-biserial committee effects, vote alignment analysis
+4. **Visualization** — Scatter regressions, distribution charts, and NetworkX network graphs
+
+### Data Sources
+
+| Source | Data Type | Coverage |
+|--------|-----------|----------|
+| OpenFEC API | PAC → candidate donations (Schedule A) | 2024 election cycle |
+| Congress.gov API | Sponsored + co-sponsored legislation | 119th Congress (2025–) |
+| Congress.gov API | Roll-call vote records | 119th Congress bills |
+
+### Target Sample
+
+We selected **15 freshman legislators** (first elected in November 2024) serving on three committees:
+
+| Committee | Focus Topic | Members |
+|-----------|-------------|---------|
+| House Energy & Commerce | Fossil Fuels / Green Energy | 3 |
+| House Armed Services | Defense / Iran | 12 |
+| House Science, Space & Technology | Data Centers / Tech | 0 (future work) |
+
+The sample includes **8 Republicans** and **7 Democrats**, providing a bipartisan comparison.
+
+### Industry PAC Mapping
+
+| Industry | PACs Tracked |
+|----------|-------------|
+| Fossil Fuels | ExxonMobil, Chevron, Koch Industries, ConocoPhillips, Marathon Petroleum |
+| Data Centers / Tech | Google, Meta, Amazon, Microsoft |
+| Defense / Iran | Lockheed Martin, Northrop Grumman, RTX (Raytheon), General Dynamics, Boeing, L3Harris |
+
+### Target Bills (Roll-Call Vote Analysis)
+
+| Topic | Bill | Description |
+|-------|------|-------------|
+| Fossil Fuels | HR 4776 — SPEED Act | Streamlines energy project permitting |
+| Fossil Fuels | HR 3616 — Reliable Power Act | Promotes domestic energy production |
+| Fossil Fuels | HR 1366 — Mining Regulatory Clarity Act | Reduces mining/extraction regulations |
+| Defense / Iran | HR 23 — Illegitimate Court Counteraction Act | International sanctions legislation |
+| Data Centers / Tech | HR 123 — Improving Science in Chemical Assessments Act | Science committee bill |
+
+---
+
+## Results
+
+### Donation Summary Statistics
+
+*[Table will be inserted from output/analysis_report.txt after pipeline runs]*
+
+### Correlation Analysis
+
+*[Pearson and Spearman results will be inserted from analysis module output]*
+
+### Vote Alignment Analysis
+
+*[Results from fetch_votes.py showing alignment rates by legislator and industry]*
+
+### Network Graphs
+
+The following network graphs show the structural relationship between PAC donors and target legislators. Node size reflects total donation amount; edge weight reflects PAC-to-legislator donation flow; node color reflects political party; spatial position reflects voting alignment on key bills.
+
+**Fossil Fuels / Green Energy:**
+
+![Fossil Fuels Donor–Legislator Network](../output/network_fossil_fuels.png){width=100%}
+
+**Defense / Iran:**
+
+![Defense / Iran Donor–Legislator Network](../output/network_defense_iran.png){width=100%}
+
+**Data Centers / Technology:**
+
+![Data Centers / Tech Donor–Legislator Network](../output/network_data_centers_tech.png){width=100%}
+
+---
+
+## Discussion
+
+*[To be completed after pipeline runs and results are analyzed.]*
+
+Key questions to address:
+
+- Do legislators who received more in PAC donations from an industry vote more consistently with that industry's position?
+- Are there party-level differences in the donation-alignment relationship?
+- Does committee membership amplify the effect?
+- Are there outliers (e.g., legislators who received significant donations but voted against the industry)?
+
+### Limitations
+
+1. **Sample size**: 15 legislators limits statistical power for within-subgroup analyses
+2. **Freshmen only**: Reduces confounding but may not generalize to senior members
+3. **Bill availability**: Few 119th Congress bills have completed roll-call votes as of early 2025
+4. **Correlation ≠ causation**: We cannot determine from these data whether donations *cause* aligned votes or whether donors *select* aligned legislators
+5. **Industry definition**: PAC-to-industry mapping involves judgment calls that could affect results
+
+---
+
+## Conclusion
+
+*[To be completed.]*
+
+---
+
+## References
+
+::: {#refs}
+:::

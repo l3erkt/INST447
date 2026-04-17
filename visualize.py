@@ -402,6 +402,10 @@ def generate_all_charts():
     plot_committee_effect(df)
     plot_dual_axis_per_industry(df)
 
+    # Network graphs (primary visualization per proposal)
+    from visualize_network import generate_all_networks
+    generate_all_networks()
+
     print(f"\n✓ All charts saved to {OUTPUT_DIR}/")
 
 
