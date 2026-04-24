@@ -64,3 +64,21 @@ python main.py --analyze-only     # Only run analysis + charts
 - **House Energy & Commerce Committee** (Fossil Fuels focus)
 - **House Armed Services Committee** (Defense/Iran focus)
 - **House Science, Space & Technology Committee** (Data Centers/Tech focus)
+
+## Possible Bills to look into
+### Green Energy
+As of late April 2026, the legislative status and voting records for these three bills in the House of Representatives are as follows. Of the three, only H.R. 4758 has reached a full floor vote.
+
+1. H.R. 4758 – Homeowner Energy Freedom Act
+
+This bill sought to repeal key electrification rebates and energy efficiency grants established by the Inflation Reduction Act (IRA).
+
+    House Floor Vote Date: February 25, 2026
+
+    Result: Passed (210–199, 1 Present)
+
+    Roll Call No.: 78
+
+    Procedural Vote: A Democratic motion to recommit (a final attempt to send the bill back to committee for changes) failed 198–208 (Roll Call No. 77).
+
+    Current Status: Received in the Senate and referred to the Committee on Energy and Natural Resources.
