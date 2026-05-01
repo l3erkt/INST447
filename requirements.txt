@@ -5,3 +5,4 @@ matplotlib
 scipy
 python-dotenv
 networkx>=3.0
+statsmodels
