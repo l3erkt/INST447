@@ -8,9 +8,7 @@ We test this across three policy domains:
 
 | Focus Area | PACs Tracked | Policy Areas |
 |---|---|---|
-| **Fossil Fuels** | ExxonMobil, Chevron, Koch Industries, ConocoPhillips, Marathon Petroleum | Energy, Environmental Protection |
-| **Data Centers / Tech** | Google, Meta, Amazon, Microsoft | Science/Technology/Communications, Energy |
-| **Defense / Iran** | Lockheed Martin, Northrop Grumman, RTX (Raytheon), General Dynamics, Boeing, L3Harris | Armed Forces & National Security, International Affairs |
+| **Fossil Fuels** | ExxonMobil, Chevron, Koch Industries, ConocoPhillips, Marathon Petroleum, etc. | Energy, Environmental Protection |
 
 ## Data Sources
 
@@ -35,37 +33,18 @@ python main.py --fetch-only       # Only download data
 python main.py --analyze-only     # Only run analysis + charts
 ```
 
-## Project Structure
-
-```
-├── config.py          # API keys, PAC mappings, legislator targets
-├── fetch_fec.py       # FEC API client (PAC → candidate donations)
-├── fetch_congress.py  # Congress.gov client (bills by policy area)
-├── merge_data.py      # Joins donation & legislation datasets
-├── analysis.py        # Pearson/Spearman correlations, committee effects
-├── visualize.py       # Seaborn/Matplotlib charts (dark theme)
-├── main.py            # Pipeline orchestrator
-├── data/              # Cached CSVs (gitignored)
-└── output/            # Charts & analysis report (gitignored)
-```
-
 ## Methodology
 
-1. **Resolve** FEC candidate IDs for 30 legislators on Energy & Commerce, Armed Services, and Science/Tech committees
-2. **Fetch** Schedule B disbursements from each industry PAC to each legislator
-3. **Fetch** sponsored + co-sponsored legislation, filtered by policy area
-4. **Merge** datasets on (legislator, industry)
-5. **Analyze** with Pearson correlation, Spearman rank, point-biserial (committee effect)
-6. **Visualize** scatter regressions, bar charts, heatmaps, party comparisons
+1. **Network Graphs** were the most effective way to see how politicans voted on chosen topics, and what industries contributed to their campaign and success. 
+2. **Colors** were used to make our network graphs more understandable. Red nodes represent republicans, blue nodes represent democrats, yellow nodes represent contributors in the fossil fuels industry, and green nodes represent contributors in the green-energy industry. Lastly, the graphs with a yellow background indicate that the congress members voted more in line with fossil fuels (saying YEAS/AYES during voting), and a blue background indicate that the congress members voted more in line with green energy (saying NAYS/NOES during voting).
+3. **Income** was also analyzed but it didn't end up having a large impact on the results. We suspected that representatives who earned less were more likely to vote in accordance with their funders, but that wasn't exactly the case.  
 
 ## Target Legislators
 
-30 members of the 117th Congress (2021–2022) selected from:
+12 members of the 119th Congress (2025–2026) selected from:
 - **House Energy & Commerce Committee** (Fossil Fuels focus)
-- **House Armed Services Committee** (Defense/Iran focus)
-- **House Science, Space & Technology Committee** (Data Centers/Tech focus)
 
-## Possible Bills to look into
+## Selected Bill
 ### Green Energy
 As of late April 2026, the legislative status and voting records for these three bills in the House of Representatives are as follows. Of the three, only H.R. 4758 has reached a full floor vote.
 
